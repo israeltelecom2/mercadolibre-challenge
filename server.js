@@ -53,7 +53,7 @@ function checkDna(reqDna){
         columnCount++
       }
      }
-     if(columnCount >= 3){
+     if(columnCount >= 4){
       verticalCount = columnCount
      }
   }
