@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 
 mongoose
     .connect('mongodb://israel:Advanced840@ds125862.mlab.com:25862/exame')
-    .then(() => console.log(`Conectado no banco de dados exame`))
+    .then(() => console.log(`Connected on exame database`))
     .catch(err => console.log(err))
 
 const Schema = mongoose.Schema;
