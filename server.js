@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 
 mongoose
     .connect('mongodb://israel:Advanced840@ds125862.mlab.com:25862/exame')
-    .then(() => console.log(`Connected on exame database`))
+    .then(() => console.log(`Conectado no banco de dados exame`))
     .catch(err => console.log(err))
 
 const Schema = mongoose.Schema;
@@ -49,11 +49,18 @@ function checkDna(reqDna){
   for(let j = 0; j < 6; j++){
     let columnCount = 0
     for(let i = 0 ; i < dna.length-1; i++){
-      if(dna[i][j] == dna[i+1][j]){    
-        columnCount++
+      if(dna[i][j] == dna[i+1][j]){ 
+		if(columnCount > 0){
+			if(dna[i][j] == dna[i-1][j]){
+				columnCount++
+			}
+		}else {
+			columnCount++
+		}
+        
       }
      }
-     if(columnCount >= 4){
+     if(columnCount >= 3){
       verticalCount = columnCount
      }
   }
@@ -63,7 +70,14 @@ function checkDna(reqDna){
     let rowCount = 0
     for(let i = 0 ; i < dna.length-1; i++){
       if(dna[j][i] == dna[j][i+1]){    
-        rowCount++
+		if(rowCount > 0){
+			if(dna[j][i] == dna[j][i-1]){
+				rowCount++
+			}
+		}else {
+			rowCount++
+		}
+        
       }
      }
      if(rowCount >= 3){
@@ -72,7 +86,11 @@ function checkDna(reqDna){
   }
   
  //Checking counters for return result
- if(horizontalCount >= 3 || verticalCount >= 3 || diagonalCount >= 3){
+ if(horizontalCount >= 3 && verticalCount >= 3 && diagonalCount >= 3 ||
+	horizontalCount >= 3 && verticalCount >= 3 && diagonalCount >= 0 ||
+	horizontalCount >= 3 && verticalCount >= 0 && diagonalCount >= 3 ||
+	horizontalCount >= 0 && verticalCount >= 3 && diagonalCount >= 3 
+	){
    return true
  }else {
    return false
