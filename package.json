@@ -10,7 +10,7 @@
     "type": "git",
     "url": "(git://github.com/filipemgcarvalho/mercadolibre-challange.git)"
   },
-  "author": "Filipe Carvalho",
+  "author": "Israel Henrique",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
