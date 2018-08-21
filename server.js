@@ -24,7 +24,7 @@ HumanDna = mongoose.model('count_human_dna', HumanDnaSchema)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-const port = 3000
+const port = process.env.PORT || 8080;
 
 function checkDna(reqDna){
 
